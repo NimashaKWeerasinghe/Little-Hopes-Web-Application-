@@ -1,0 +1,29 @@
+.donationTable {
+  width: 1000px;
+  border: none;
+}
+.section {
+  width: 1500px;
+}
+
+.donationUpdate {
+  width: 90px;
+  background-color: rgb(127, 182, 163);
+}
+.donationdelette {
+  width: 90px;
+  background-color: rgb(223, 142, 136);
+}
+
+.donationCell {
+  border-color: black;
+  border-color: rgb(239, 213, 186);
+  border-left: none;
+  border-right: none;
+  width: 70px;
+}
+.donationRow:hover {
+  background-color: rgb(226, 219, 211);
+  border-bottom: 2px;
+  border-color: black;
+}

@@ -1,0 +1,127 @@
+.popup .overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 713px;
+  background-color: black;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.popup .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(11, 11, 11);
+  width: 900px;
+  height: 730px;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 7px;
+  box-shadow: 2px 2px 2px 2px;
+}
+.popup {
+  overflow: hidden;
+}
+.childimg {
+  width: 250px;
+  height: 250px;
+}
+
+.cancelbut {
+  background-color: rgb(136, 123, 190);
+  margin-right: 10px;
+}
+.cancelbut:hover {
+  background-color: rgb(136, 112, 231);
+}
+
+.deletebut {
+  background-color: rgb(143, 74, 74);
+}
+
+.deletebut:hover {
+  background-color: rgb(238, 81, 81);
+}
+
+.personal {
+  font-size: 20px;
+  text-align: left;
+  color: white;
+  padding-left: 2px;
+}
+
+.peronaltitle {
+  margin-left: 220px;
+}
+
+.status {
+  margin-left: 500px;
+  margin-top: -260px;
+}
+
+.edu {
+  margin-left: 500px;
+}
+.health {
+  margin-left: 500px;
+}
+
+.fNameBox {
+  margin-left: 20px;
+  font-size: 18px;
+}
+.mNameBox {
+  margin-left: 20px;
+  font-size: 18px;
+}
+
+.dobBox {
+  margin-left: 20px;
+  font-size: 18px;
+}
+.statusBox {
+  margin-left: 20px;
+  font-size: 18px;
+}
+
+.genderBox {
+  margin-left: 20px;
+  font-size: 18px;
+}
+.healthBox {
+  margin-left: 20px;
+  font-size: 18px;
+}
+.eduBox {
+  margin-left: 20px;
+  font-size: 18px;
+}
+.fatherName {
+  margin-left: 50px;
+}
+
+.motherName {
+  margin-left: 50px;
+}
+.dob {
+  margin-left: 50px;
+}
+.gender {
+  margin-left: 50px;
+}
+.buttons {
+  margin-top: 80px;
+  padding: 5px;
+}
+table {
+  border: 1px;
+  border-color: white;
+}
+hr {
+  margin-left: 180px;
+}

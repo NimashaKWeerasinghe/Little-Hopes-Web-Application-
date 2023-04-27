@@ -1,0 +1,8 @@
+.fullPage {
+  height: 1000px;
+  background-image: linear-gradient(to right, #3299be, #d5c7ec, #9cbeeb);
+}
+
+.login-content h2 {
+  margin-left: -500px;
+}

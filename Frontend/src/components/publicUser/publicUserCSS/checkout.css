@@ -1,0 +1,115 @@
+.checkoutLogo {
+  width: 200px;
+  height: 100px;
+  background-image: url("../../../../public/images/logo1.png");
+}
+.checkoutNav {
+  margin-right: 70px;
+}
+
+.product-info {
+  padding-top: 150px;
+}
+
+.donationCard {
+  height: 580px;
+  background-color: azure;
+  width: 1000px;
+  margin-left: 260px;
+  padding-left: 50px;
+  padding-top: 50px;
+  box-shadow: 3px 3px;
+}
+
+.donateimg {
+  width: 500px;
+  height: 450px;
+  background-image: url("../../../../public/images/donate.png");
+  margin-left: -50px;
+}
+
+.product-text {
+  margin-left: 500px;
+  margin-top: -400px;
+}
+.priceAmount {
+  margin-left: 500px;
+  padding-top: 20px;
+  font-size: 25px;
+}
+.buy-btn {
+  margin-left: 500px;
+  width: 200px;
+  height: 70px;
+  font-size: 18px;
+  border-radius: 12px;
+  background-image: linear-gradient(to right, #2f32e6, #8550d3, #8eaacf);
+  border: none;
+}
+.Paypal {
+  margin-left: 500px;
+  width: 300px;
+  padding-top: 50px;
+}
+
+.progress-checkout-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  margin-left: 80px;
+}
+
+.progress-step-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.step-check {
+  background-color: rgb(0, 132, 255);
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  margin-bottom: 1rem;
+  position: relative;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+}
+
+.progress-step-container:nth-of-type(3) .step-check::after {
+  display: none;
+}
+.progress-step-container:nth-of-type(3) .step-check {
+  background-image: none;
+  background-color: white;
+  border: 2px solid grey;
+}
+
+.progress-step-container:nth-of-type(2) .step-check::after {
+  background-color: grey;
+}
+
+.progress-step-container:nth-of-type(2) .step-check {
+  background-image: none;
+  background-color: white;
+  border: 2px solid rgb(0, 132, 255);
+}
+
+.step-check::after {
+  content: "";
+  width: 25vw;
+  height: 2px;
+  background-color: inherit;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateX(100%) translateY(-50%);
+}
+
+.step-title {
+  color: grey;
+}

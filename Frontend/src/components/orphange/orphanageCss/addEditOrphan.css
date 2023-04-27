@@ -1,0 +1,42 @@
+.grid {
+  margin-left: 50px;
+  width: 60rem;
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-top: 50px;
+}
+.formfill {
+  width: 400px;
+  height: 40px;
+}
+.rightForm {
+  margin-left: 500px;
+  margin-top: -320px;
+}
+.addOrphanBut {
+  margin-top: 50px;
+  margin-left: 350px;
+  background-color: black;
+  color: aliceblue;
+}
+.formfillBut {
+  width: 400px;
+  height: 40px;
+}
+
+input[type="file"]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: black;
+  padding: 10px 10px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  width: 100px;
+}
+.orphanCap {
+  text-align: center;
+  margin-top: -1%;
+  margin-bottom: 5%;
+}

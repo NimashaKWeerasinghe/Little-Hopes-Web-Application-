@@ -1,0 +1,96 @@
+.item {
+  color: white;
+}
+
+.item:hover {
+  color: black;
+}
+
+.card {
+  width: 20%;
+  display: inline-block;
+  box-shadow: 2px 2px 5px black;
+  border-radius: 5px;
+  margin: 2%;
+  height: 400px;
+}
+
+.imageChild {
+  padding-left: 20%;
+  margin-top: 10%;
+}
+
+.imageChild img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+
+.fullName {
+  text-align: center;
+  margin-left: 1px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.des {
+  padding: 3px;
+  text-align: center;
+
+  padding-top: 10px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.gender {
+  font-size: 17px;
+  font-family: 500;
+  margin-right: 50px;
+}
+
+button {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  color: black;
+  font-weight: 600;
+  width: 200px;
+}
+
+.update {
+  background-color: rgb(138, 189, 151);
+}
+
+.delete {
+  background-color: rgb(224, 176, 176);
+}
+
+button:hover {
+  background-color: black;
+  color: white;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.add {
+  display: block;
+  width: 200px;
+  height: 55px;
+  background-color: rgb(119, 131, 195);
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+  line-height: 25px;
+  font-size: 18px;
+  color: black;
+  border: none;
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+.add:hover {
+  background-color: rgb(110, 127, 225);
+}

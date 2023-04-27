@@ -1,0 +1,80 @@
+.popupUser .overlay {
+  margin-top: 50px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 713px;
+  background-color: black;
+  z-index: 1;
+  opacity: 0.8;
+}
+.popupUser {
+  overflow: hidden;
+}
+.popupUser .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(11, 11, 11);
+  width: 700px;
+  height: 600px;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 7px;
+
+  margin-top: 880px;
+  color: white;
+}
+.childimgUser {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+.nameModel {
+  color: white;
+  margin-left: 200px;
+}
+.sponsortime {
+  margin-top: 80px;
+}
+.outputDiv {
+  margin-left: 300px;
+  margin-top: -20px;
+}
+.personalDetalis {
+  margin-top: 50px;
+  color: white;
+}
+.sponsorTitle {
+  margin-left: 20px;
+}
+.tableSponser {
+  width: 600px;
+  margin-left: 30px;
+  margin-top: 30px;
+}
+.sponserUserrow {
+  background-color: beige;
+}
+.sponserButton {
+  width: 200px;
+  height: 50px;
+  background-color: blueviolet;
+}
+.userSponserButton {
+  margin-top: 20px;
+  margin-left: 60px;
+}
+.cancelSponser {
+  margin-left: 220px;
+  margin-top: -50px;
+}
+.cancelbutSponsor {
+  width: 200px;
+  height: 50px;
+  background-color: rgb(240, 150, 150);
+}

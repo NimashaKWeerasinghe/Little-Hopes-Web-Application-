@@ -1,0 +1,130 @@
+.body {
+  margin-top: 10px;
+  background-color: #f0e6da;
+  margin-bottom: 30px;
+}
+
+.title {
+  margin-left: 250px;
+  margin-top: 10px;
+  font-family: sans-serif;
+  font-size: 22px;
+}
+.inputs {
+  width: 270px;
+  height: 35px;
+  background: transparent;
+  border-bottom: 1px solid black;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  color: black;
+  font-size: 12px;
+  letter-spacing: 8px;
+  margin-top: 2px;
+  font-family: sans-serif;
+  background-color: #e0cbac;
+}
+
+.container {
+  margin-top: 120px;
+  margin-left: 10px;
+  box-shadow: 5px 10px #c6b7a1;
+  width: 800px;
+  height: 1100px;
+  opacity: 0.8;
+  background-color: #e0cbac;
+}
+
+.detalis {
+  margin-top: 5px;
+}
+
+input[type="file"]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #926735;
+  padding: 10px 10px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  width: 100px;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: #62400a;
+}
+
+.inputFile {
+  margin-top: 5px;
+  width: 268px;
+}
+
+.user-detalis {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.input-box {
+  margin-right: 60px;
+  margin-top: 15px;
+  margin-left: 50px;
+}
+
+.nav {
+  font-size: 15px;
+  margin-left: 50px;
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+}
+
+.nav:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.header {
+  color: black;
+}
+
+.navbar {
+  margin-right: -80px;
+  margin-top: 18px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.coverimag {
+  background-image: url("../../../../public/images/adopt1.jpg");
+  background-size: cover;
+  margin-top: 120px;
+  width: 675px;
+  height: 1100px;
+  margin-left: 5px;
+  border-radius: 7px;
+  box-shadow: 5px 10px #c6b7a1;
+}
+
+button {
+  border: none;
+  background: #926735;
+  padding: 10px 10px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  width: 250px;
+}
+
+.submitbutton {
+  margin-left: 170px;
+  margin-top: 30px;
+}
+
+.header {
+  background-color: #c6b7a1;
+}

@@ -1,0 +1,35 @@
+.side {
+  background-color: rgb(255, 0, 255);
+  margin-top: -5px;
+  border-radius: 10px;
+  height: 1000px;
+}
+
+.middle {
+  margin-left: 50px;
+}
+
+.nav {
+  border-radius: 5px;
+  width: 1500px;
+
+  height: 78px;
+}
+.detalis {
+  margin-top: 500px;
+  margin-left: 150px;
+}
+table {
+  border: 1px;
+}
+
+td,
+th {
+  border: 1px solid #1b1a1a;
+  padding: 8px;
+}
+.adopt {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}

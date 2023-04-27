@@ -1,0 +1,12 @@
+:root {
+  --yellow: linear-gradient(180deg, #9addf8 -146.42%, #b09dfa -46.42%);
+  --orange: #fca61f;
+  --black: #242d49;
+  --gray: #788097;
+  --purple: linear-gradient(180deg, #7e5ed3 0%, #95b0db 100%);
+  --pink: #91a0ff;
+  --glass: rgba(255, 255, 255, 0.54);
+  --boxShadow: 0px 19px 60px rgb(0 0 0 / 8%);
+  --smboxShadow: -79px 51px 60px rgba(0, 0, 0, 0.08);
+  --activeItem: #f799a354;
+}
