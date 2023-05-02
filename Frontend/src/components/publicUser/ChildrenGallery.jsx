@@ -10,6 +10,8 @@ import { useState, useEffect } from "react";
 
 import { db } from "../../firebase";
 
+import axios from "axios";
+
 import {
   collection,
   getDocs,
@@ -28,6 +30,8 @@ const initialState = {
   dJob: "",
   dAmount: "",
   dDate: "",
+  dPhone: "",
+  dHours: "",
 };
 const initialStateAdoption = {
   fName: "",
@@ -51,7 +55,7 @@ const ChildrenGallery = () => {
   const [orphan, setOrphan] = useState({});
   const [data, setData] = useState(initialState);
   const [dataAdoption, setDataAdoption] = useState(initialStateAdoption);
-  const { dName, dAge, dJob, dAmount, dDate } = data;
+  const { dName, dAge, dJob, dAmount, dDate, dPhone, dHours } = data;
   const {
     fName,
     fAge,
@@ -68,11 +72,20 @@ const ChildrenGallery = () => {
   } = dataAdoption;
   const [dMaritalStatus, setMarital] = useState();
   const [dRelationship, setRelation] = useState();
-  const [dWorkClass, setWorkclass] = useState();
+  const [dWorkClass, setdWorkclass] = useState();
   const [dEdu, setEdu] = useState();
   const [dGender, setGender] = useState();
   const navigate = useNavigate();
   const { oid } = useParams();
+  const futurePrediction = "";
+
+  const [age, setAge] = useState("");
+  const [workclass, setWorkclass] = useState("");
+  const [education, setEducation] = useState("");
+  const [marital_status, setMarital_status] = useState("");
+  const [relationship, setRelationship] = useState("");
+  const [sex, setSex] = useState("");
+  const [hours_per_week, setHours_per_week] = useState("");
 
   const handleModal = (item) => {
     setOpen(true);
@@ -96,6 +109,51 @@ const ChildrenGallery = () => {
   const handleDonation = async (e) => {
     e.preventDefault();
     // console.log(dMaritalStatus);
+    const convertAge = parseInt(dAge);
+    const conveertHours = parseInt(dHours);
+    const FloatAge = convertAge.toFixed(2);
+    const FloatHours = conveertHours.toFixed(2);
+    const convertMarital = parseInt(dMaritalStatus);
+    const convertWork = parseInt(dWorkClass);
+    const convertEdu = parseInt(dEdu);
+    const convertRelation = parseInt(dRelationship);
+    const convertsex = parseInt(dGender);
+    console.log(convertEdu);
+
+    setAge(FloatAge);
+    setWorkclass(convertWork);
+    setEducation(convertEdu);
+    setMarital_status(convertMarital);
+    setRelationship(convertRelation);
+    setSex(convertsex);
+    setHours_per_week(FloatHours);
+    console.log(FloatHours);
+
+    //Marital status
+
+    console.log("hii", marital_status);
+
+    const params = {
+      age,
+      workclass,
+      education,
+      marital_status,
+      relationship,
+      sex,
+      hours_per_week,
+    };
+
+    axios
+      .post("http://localhost:8080/predict_donation", params)
+      .then((res) => {
+        const data = res.data.data;
+        const parameters = JSON.stringify(params);
+        const msg = `Prediction: ${data.prediction}\nInterpretation: ${data.interpretation}\nParameters: ${parameters}`;
+        console.log(msg);
+        //console.log(data.interpretation);
+      })
+      .catch((error) => console.log(`Error: ${error.message}`));
+    console.log(data.interpretation);
 
     try {
       await addDoc(collection(db, "donations"), {
@@ -106,12 +164,13 @@ const ChildrenGallery = () => {
         dRelationship: dRelationship,
         dWorkClass: dWorkClass,
         dGender: dGender,
+        predictDonation: data.interpretation,
       });
     } catch (error) {
       console.log(error);
     }
 
-    navigate(`/CheckOut/${dAmount}`);
+    //navigate(`/CheckOut/${dAmount}`);
   };
 
   //Adoption
@@ -287,6 +346,20 @@ const ChildrenGallery = () => {
                     <div className="donation-box">
                       <input
                         type="text"
+                        placeholder="Phone Number"
+                        className="inputDonation"
+                        name="dPhone"
+                        onChange={handleDonationChange}
+                        value={dPhone}
+                        required
+                      ></input>
+                    </div>
+                  </div>
+
+                  <div className="donationdetalis">
+                    <div className="donation-box">
+                      <input
+                        type="text"
                         placeholder="Occupation"
                         required
                         className="inputDonation"
@@ -326,6 +399,20 @@ const ChildrenGallery = () => {
                   <div className="donationRight">
                     <div className="donationdetalis">
                       <div className="donation-box">
+                        <input
+                          type="text"
+                          placeholder="Working Hours Per Week"
+                          className="inputDonation"
+                          name="dHours"
+                          onChange={handleDonationChange}
+                          value={dHours}
+                          required
+                        ></input>
+                      </div>
+                    </div>
+
+                    <div className="donationdetalis">
+                      <div className="donation-box">
                         <select
                           name="marital"
                           id="marital"
@@ -333,11 +420,13 @@ const ChildrenGallery = () => {
                           onChange={(e) => setMarital(e.target.value)}
                           value={dMaritalStatus}
                         >
-                          <option value="1">Select Marital Status</option>
-                          <option value="Never-married">Never-married</option>
-                          <option value="Married">Married</option>
-                          <option value="Divorced">Divorced</option>
-                          <option value="Widowed">Widowed</option>
+                          <option value="Marital Status">
+                            Select Marital Status
+                          </option>
+                          <option value="1">Never-married</option>
+                          <option value="2">Married</option>
+                          <option value="3">Divorced</option>
+                          <option value="4">Widowed</option>
                         </select>
                       </div>
                     </div>
@@ -347,19 +436,15 @@ const ChildrenGallery = () => {
                           name="workclass"
                           id="workclass"
                           className="inputDonation"
-                          onChange={(e) => setWorkclass(e.target.value)}
+                          onChange={(e) => setdWorkclass(e.target.value)}
                           value={dWorkClass}
                         >
-                          <option value="1">Select Work Class</option>
-                          <option value="Private">Private</option>
-                          <option value="Government">Government</option>
-                          <option value="Semi-government">
-                            Semi-government
-                          </option>
-                          <option value="Self-employment">
-                            Self-employment
-                          </option>
-                          <option value="Never-worked">Never-worked</option>
+                          <option value="WorkClass">Select Work Class</option>
+                          <option value="0">Private</option>
+                          <option value="2">Government</option>
+                          <option value="3">Semi-government</option>
+                          <option value="1">Self-employment</option>
+                          <option value="4">Never-worked</option>
                         </select>
                       </div>
                     </div>
@@ -373,12 +458,14 @@ const ChildrenGallery = () => {
                           onChange={(e) => setEdu(e.target.value)}
                           value={dEdu}
                         >
-                          <option value="1">Select Education Status</option>
-                          <option value="5th">5th-11th</option>
-                          <option value="11th">11th-13th</option>
-                          <option value="Bachelors">Bachelors</option>
-                          <option value="Masters">Masters</option>
-                          <option value="Doctorate">Doctorate</option>
+                          <option value="Education">
+                            Select Education Status
+                          </option>
+                          <option value="0">5th-11th</option>
+                          <option value="1">11th-13th</option>
+                          <option value="2">Bachelors</option>
+                          <option value="3">Masters</option>
+                          <option value="4">Doctorate</option>
                         </select>
                       </div>
                     </div>
@@ -392,13 +479,15 @@ const ChildrenGallery = () => {
                           onChange={(e) => setRelation(e.target.value)}
                           value={dRelationship}
                         >
-                          <option value="1">Select Relationship Status</option>
-                          <option value="Not-in-family">Not-in-family</option>
-                          <option value="Own-child">Own-child</option>
-                          <option value="Wife">Wife</option>
-                          <option value="Husband">Husband</option>
-                          <option value="Unmarried">Unmarried</option>
-                          <option value="Other-relative">Other-relative</option>
+                          <option value="Relationship">
+                            Select Relationship Status
+                          </option>
+                          <option value="4">Not-in-family</option>
+                          <option value="3">Own-child</option>
+                          <option value="1">Wife</option>
+                          <option value="2">Husband</option>
+                          <option value="5">Unmarried</option>
+                          <option value="6">Other-relative</option>
                         </select>
                       </div>
                     </div>
@@ -411,9 +500,9 @@ const ChildrenGallery = () => {
                           onChange={(e) => setGender(e.target.value)}
                           value={dGender}
                         >
-                          <option value="1">Select Gender</option>
-                          <option value="Female">Female</option>
-                          <option value="Male">Male</option>
+                          <option value="Gender">Select Gender</option>
+                          <option value="0">Female</option>
+                          <option value="1">Male</option>
                         </select>
                       </div>
                     </div>

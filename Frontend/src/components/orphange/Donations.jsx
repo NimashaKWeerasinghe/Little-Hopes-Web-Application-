@@ -16,6 +16,7 @@ import {
   collection,
   onSnapshot,
   getDocs,
+  getDoc,
   query,
   where,
   deleteDoc,
@@ -87,78 +88,93 @@ const Donations = () => {
     setDonations(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
-  const handleModal = () => {
+  const handleModal = async (id) => {
+    const docRef = doc(db, "donations", id);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
+    }
+    console.log(id.dAmount);
     //Workclass
-    if (donations.dWorkClass == "Private") {
-      setWorkclass(0);
-    }
-    if (donations.dWorkClass == "Self-employment") {
-      setWorkclass(1);
-    }
-    if (donations.dWorkClass == "Goverment") {
-      setWorkclass(2);
-    }
-    if (donations.dWorkClass == "Semi-government") {
-      setWorkclass(3);
-    }
-    if (donations.dWorkClass == "Never-worked") {
-      setWorkclass(4);
-    }
+    // if (donations.dWorkClass == "Private") {
+    //   setWorkclass(0);
+    // }
+    // if (donations.dWorkClass == "Self-employment") {
+    //   setWorkclass(1);
+    // }
+    // if (donations.dWorkClass == "Goverment") {
+    //   setWorkclass(2);
+    // }
+    // if (donations.dWorkClass == "Semi-government") {
+    //   setWorkclass(3);
+    // }
+    // if (donations.dWorkClass == "Never-worked") {
+    //   setWorkclass(4);
+    // }
 
-    //Education
-    if (donations.dWorkClass == "5th") {
-      setEducation(0);
-    }
-    if (donations.dWorkClass == "11th") {
-      setEducation(1);
-    }
-    if (donations.dWorkClass == "Bachelors") {
-      setEducation(2);
-    }
-    if (donations.dWorkClass == "Masters") {
-      setEducation(3);
-    }
-    if (donations.dWorkClass == "Never-workedDoctorate") {
-      setEducation(4);
-    }
+    // //Education
+    // if (donations.dWorkClass == "5th") {
+    //   setEducation(0);
+    // }
+    // if (donations.dWorkClass == "11th") {
+    //   setEducation(1);
+    // }
+    // if (donations.dWorkClass == "Bachelors") {
+    //   setEducation(2);
+    // }
+    // if (donations.dWorkClass == "Masters") {
+    //   setEducation(3);
+    // }
+    // if (donations.dWorkClass == "Never-workedDoctorate") {
+    //   setEducation(4);
+    // }
 
-    //Marital status
-    if (donations.dWorkClass == "Never-married") {
-      setMarital_status(1);
-    }
-    if (donations.dWorkClass == "Married") {
-      setMarital_status(2);
-    }
-    if (donations.dWorkClass == "Divorced") {
-      setMarital_status(3);
-    }
-    if (donations.dWorkClass == "Widowed") {
-      setMarital_status(4);
-    }
+    // //Marital status
+    // if (donations.dMaritalStatus == "Never-married") {
+    //   setMarital_status(1);
+    // }
+    // if (donations.dMaritalStatus == "Married") {
+    //   setMarital_status(2);
+    // }
+    // if (donations.dMaritalStatus == "Divorced") {
+    //   setMarital_status(3);
+    // }
+    // if (donations.dMaritalStatus == "Widowed") {
+    //   setMarital_status(4);
+    // }
 
-    //Relationship
-    if (donations.dWorkClass == "Wife") {
-      setRelationship(1);
-    }
-    if (donations.dWorkClass == "Husband") {
-      setRelationship(2);
-    }
-    if (donations.dWorkClass == "Own-child") {
-      setRelationship(3);
-    }
-    if (donations.dWorkClass == "Not-in-family") {
-      setRelationship(4);
-    }
-    if (donations.dWorkClass == "Unmarried") {
-      setRelationship(5);
-    }
-    if (donations.dWorkClass == "Other-relative") {
-      setRelationship(6);
-    }
+    // //Relationship
+    // if (donations.dWorkClass == "Wife") {
+    //   setRelationship(1);
+    // }
+    // if (donations.dWorkClass == "Husband") {
+    //   setRelationship(2);
+    // }
+    // if (donations.dWorkClass == "Own-child") {
+    //   setRelationship(3);
+    // }
+    // if (donations.dWorkClass == "Not-in-family") {
+    //   setRelationship(4);
+    // }
+    // if (donations.dWorkClass == "Unmarried") {
+    //   setRelationship(5);
+    // }
+    // if (donations.dWorkClass == "Other-relative") {
+    //   setRelationship(6);
+    // }
 
-    setAge(donations.dAge);
-    setSex(donations.dGender);
-    setHours_per_week(20);
+    setAge(35.0);
+    setWorkclass(1);
+    setEducation(1);
+    setMarital_status(2);
+    setRelationship(1);
+    setSex(1);
+    setHours_per_week(20.5);
+    console.log("hii", marital_status);
 
     const params = {
       age,
@@ -171,7 +187,7 @@ const Donations = () => {
     };
 
     axios
-      .post("http://localhost:8000/predict_donation", params)
+      .post("http://localhost:8080/predict_donation", params)
       .then((res) => {
         const data = res.data.data;
         const parameters = JSON.stringify(params);
@@ -266,7 +282,7 @@ const Donations = () => {
                         {" "}
                         <button
                           className="donationUpdate"
-                          onClick={() => handleModal()}
+                          onClick={() => handleModal(row.id)}
                         >
                           Predict
                         </button>
