@@ -77,7 +77,7 @@ const Donations = () => {
   const getDonations = async () => {
     const DonatoinRef = query(
       collection(db, "donations"),
-      where("orphangeEmail", "==", "nima@gmail.com")
+      where("orphangeEmail", "==", "abc@gmail.com")
     );
     const getAllDonations = () => {
       return getDocs(DonatoinRef);

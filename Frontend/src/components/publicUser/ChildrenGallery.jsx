@@ -53,9 +53,9 @@ const ChildrenGallery = () => {
   const [open, setOpen] = useState(false);
   const [orphans, setOrphans] = useState([]);
   const [orphan, setOrphan] = useState({});
-  const [data, setData] = useState(initialState);
+  const [dataI, setData] = useState(initialState);
   const [dataAdoption, setDataAdoption] = useState(initialStateAdoption);
-  const { dName, dAge, dJob, dAmount, dDate, dPhone, dHours } = data;
+  const { dName, dAge, dJob, dAmount, dDate, dPhone, dHours } = dataI;
   const {
     fName,
     fAge,
@@ -103,7 +103,7 @@ const ChildrenGallery = () => {
   }, []);
 
   const handleDonationChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+    setData({ ...dataI, [e.target.name]: e.target.value });
   };
 
   const handleDonation = async (e) => {
@@ -119,6 +119,77 @@ const ChildrenGallery = () => {
     const convertRelation = parseInt(dRelationship);
     const convertsex = parseInt(dGender);
     console.log(convertEdu);
+
+    if (dMaritalStatus == "1") {
+      setMarital("Never-Married");
+    }
+    if (dMaritalStatus == "2") {
+      setMarital("Married");
+    }
+    if (dMaritalStatus == "3") {
+      setMarital("Divorced");
+    }
+    if (dMaritalStatus == "4") {
+      setMarital("Widowed");
+    }
+
+    if (dMaritalStatus == "0") {
+      setEdu("5th-11th");
+    }
+    if (dMaritalStatus == "1") {
+      setEdu("11th-13th");
+    }
+    if (dMaritalStatus == "2") {
+      setEdu("Bachelors");
+    }
+    if (dMaritalStatus == "3") {
+      setEdu("Masters");
+    }
+    if (dMaritalStatus == "4") {
+      setEdu("Doctorate");
+    }
+
+    if (dRelationship == "1") {
+      setRelation("Wife");
+    }
+    if (dMaritalStatus == "2") {
+      setRelation("Husband");
+    }
+    if (dMaritalStatus == "3") {
+      setRelation("Own-child");
+    }
+    if (dMaritalStatus == "4") {
+      setRelation("Not-in-family");
+    }
+    if (dMaritalStatus == "5") {
+      setRelation("Unmarried");
+    }
+    if (dMaritalStatus == "6") {
+      setRelation("Other-relative");
+    }
+
+    if (dWorkClass == "0") {
+      setdWorkclass("Private");
+    }
+    if (dMaritalStatus == "1") {
+      setdWorkclass("Self-employee");
+    }
+    if (dMaritalStatus == "2") {
+      setdWorkclass("Government");
+    }
+    if (dMaritalStatus == "") {
+      setdWorkclass("Semi-Government");
+    }
+    if (dMaritalStatus == "4") {
+      setdWorkclass("Never-worked");
+    }
+
+    if (dGender == "1") {
+      setGender("Female");
+    }
+    if (dGender == "0") {
+      setGender("Male");
+    }
 
     setAge(FloatAge);
     setWorkclass(convertWork);
@@ -145,30 +216,44 @@ const ChildrenGallery = () => {
 
     axios
       .post("http://localhost:8080/predict_donation", params)
-      .then((res) => {
+      .then(async (res) => {
         const data = res.data.data;
         const parameters = JSON.stringify(params);
         const msg = `Prediction: ${data.prediction}\nInterpretation: ${data.interpretation}\nParameters: ${parameters}`;
         console.log(msg);
         //console.log(data.interpretation);
+        console.log(dMaritalStatus);
+        try {
+          await addDoc(collection(db, "donations"), {
+            ...dataI,
+            orphangeEmail: "nima@gmail.com",
+            dMaritalStatus: dMaritalStatus,
+            dEdu: dEdu,
+            dRelationship: dRelationship,
+            dWorkClass: dWorkClass,
+            dGender: dGender,
+            predictDonation: data.interpretation,
+          });
+        } catch (error) {
+          console.log(error);
+        }
       })
       .catch((error) => console.log(`Error: ${error.message}`));
-    console.log(data.interpretation);
 
-    try {
-      await addDoc(collection(db, "donations"), {
-        ...data,
-        orphangeEmail: "nima@gmail.com",
-        dMaritalStatus: dMaritalStatus,
-        dEdu: dEdu,
-        dRelationship: dRelationship,
-        dWorkClass: dWorkClass,
-        dGender: dGender,
-        predictDonation: data.interpretation,
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   await addDoc(collection(db, "donations"), {
+    //     ...data,
+    //     orphangeEmail: "nima@gmail.com",
+    //     dMaritalStatus: dMaritalStatus,
+    //     dEdu: dEdu,
+    //     dRelationship: dRelationship,
+    //     dWorkClass: dWorkClass,
+    //     dGender: dGender,
+    //     predictDonation: data.interpretation,
+    //   });
+    // } catch (error) {
+    //   console.log(error);
+    // }
 
     //navigate(`/CheckOut/${dAmount}`);
   };
