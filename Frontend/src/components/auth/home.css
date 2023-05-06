@@ -1,5 +1,91 @@
 * {
-  font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Titillium Web", sans-serif;
+}
+
+:root {
+  --mainColor: #98bcec;
+  --mainColorLight: #5767aa;
+  --secondaryColor: #db2b39;
+  --textColor: #1e1d1d;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 110px;
+  padding: 0 1rem;
+  background-color: var(--mainColor);
+  color: var(--textColor);
+}
+
+nav a {
+  margin: 0 1rem;
+  color: var(--textColor);
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+nav a:hover {
+  color: var(--secondaryColor);
+}
+
+header .nav-btn {
+  padding: 5px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--textColor);
+  visibility: hidden;
+  opacity: 0;
+  font-size: 1.8rem;
+}
+
+header div,
+nav {
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 1024px) {
+  header .nav-btn {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  header nav {
+    position: fixed;
+    top: -100vh;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    background-color: var(--mainColor);
+    transition: 1s;
+  }
+
+  header .responsive_nav {
+    transform: translateY(100vh);
+  }
+
+  nav .nav-close-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+
+  nav a {
+    font-size: 1.5rem;
+  }
 }
 
 .banner {
@@ -10,61 +96,6 @@
   background-size: cover;
   background-position: center;
   font-family: sans-serif;
-}
-
-.navbar {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #93beef;
-  height: 5rem;
-  box-shadow: 2px 2px 2px 5px #93beef;
-  overflow: hidden;
-  position: fixed;
-  z-index: 2;
-  margin-top: 20px;
-}
-
-.logo {
-  width: 12rem;
-  cursor: pointer;
-  background-blend-mode: multiply;
-  opacity: 0.9;
-}
-
-.logoImg {
-  padding-top: 10px;
-  background-image: url("../../../public/images/logo1.png");
-}
-
-.navbar ul li {
-  list-style: none;
-  display: inline-block;
-  margin: 0 30px;
-  position: relative;
-}
-
-.navbar ul li a {
-  text-decoration: none;
-  color: #080808;
-  text-transform: uppercase;
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.navbar ul li::after {
-  content: "";
-  height: 3px;
-  width: 0;
-  background: black;
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-}
-
-.navbar ul li:hover::after {
-  width: 100%;
 }
 
 #home {

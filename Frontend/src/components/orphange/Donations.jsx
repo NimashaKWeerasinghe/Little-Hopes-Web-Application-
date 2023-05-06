@@ -21,6 +21,7 @@ import {
   where,
   deleteDoc,
   doc,
+  updateDoc,
 } from "firebase/firestore";
 import "./orphanageCss/donations.css";
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -72,19 +73,189 @@ const Donations = () => {
 
   useEffect(() => {
     getDonations();
+    //getDonations1();
+    updatedonate();
   }, [donations]);
+
+  const updatedonate = async () => {
+    const DonatoinRef1 = query(
+      collection(db, "donations"),
+      where("predictDonation", "==", "")
+    );
+
+    const x = await getDocs(DonatoinRef1);
+    const y = x.docs;
+    console.log("mmmmm", y[1].id);
+    if (y.length == 0) {
+      console.log("Completed");
+    } else {
+      for (let i = 0; i < y.length; i++) {
+        const oneDonationRef = doc(db, "donations", y[i].id);
+        onSnapshot(oneDonationRef, (val) => {
+          const x = val.data();
+          console.log("eeee", x.dAge);
+
+          var getAge = x.dAge;
+          var getWorkClass = x.dWorkClass;
+          var getEdu = x.dEdu;
+          var getMarital = x.dMaritalStatus;
+          var getRelation = x.dRelationship;
+          var getSex = x.dGender;
+          var getWorkHours = x.dHours;
+
+          var numWorkClass = 0;
+          var numEdu = 0;
+          var numMarital = 1;
+          var numRelation = 1;
+          var numSex = 1;
+
+          //Workclass
+          if (getWorkClass == "Private") {
+            numWorkClass = 0;
+          }
+          if (getWorkClass == "Self-employment") {
+            numWorkClass = 1;
+          }
+          if (getWorkClass == "Goverment") {
+            numWorkClass = 2;
+          }
+          if (getWorkClass == "Semi-government") {
+            numWorkClass = 3;
+          }
+          if (getWorkClass == "Never-worked") {
+            numWorkClass = 4;
+          }
+
+          //Education
+          if (getEdu == "5th") {
+            numEdu = 0;
+          }
+          if (getEdu == "11th") {
+            numEdu = 1;
+          }
+          if (getEdu == "Bachelors") {
+            numEdu = 2;
+          }
+          if (getEdu == "Masters") {
+            numEdu = 3;
+          }
+          if (getEdu == "Doctorate") {
+            numEdu = 4;
+          }
+
+          //Marital status
+          if (getMarital == "Never-married") {
+            numMarital = 1;
+          }
+          if (getMarital == "Married") {
+            numMarital = 2;
+          }
+          if (getMarital == "Divorced") {
+            numMarital = 3;
+          }
+          if (getMarital == "Widowed") {
+            numMarital = 4;
+          }
+
+          //Relationship
+          if (getRelation == "Wife") {
+            numRelation = 1;
+          }
+          if (getRelation == "Husband") {
+            numRelation = 2;
+          }
+          if (getRelation == "Own-child") {
+            numRelation = 3;
+          }
+          if (getRelation == "Not-in-family") {
+            numRelation = 4;
+          }
+          if (getRelation == "Unmarried") {
+            numRelation = 5;
+          }
+          if (getRelation == "Other-relative") {
+            numRelation = 6;
+          }
+
+          //Sex
+          if (getSex == "Female") {
+            numSex = 1;
+          }
+          if (getSex == "Male") {
+            numSex = 0;
+          }
+
+          const intAge = parseInt(getAge);
+          const floatAge = intAge.toFixed(2);
+
+          const intWorkHours = parseInt(getWorkHours);
+          const floatWorkHours = intWorkHours.toFixed(2);
+
+          const intMarital = parseInt(numMarital);
+
+          const intWorkClass = parseInt(numWorkClass);
+
+          const intEdu = parseInt(numEdu);
+
+          const intRelation = parseInt(numRelation);
+
+          const intSex = parseInt(numSex);
+
+          setAge(floatAge);
+          setWorkclass(intWorkClass);
+          setEducation(intEdu);
+          setMarital_status(intMarital);
+          setRelationship(intRelation);
+          setSex(intSex);
+          setHours_per_week(floatWorkHours);
+          console.log("yyyy", floatWorkHours);
+
+          const params = {
+            age,
+            workclass,
+            education,
+            marital_status,
+            relationship,
+            sex,
+            hours_per_week,
+          };
+
+          axios
+            .post("http://localhost:8080/predict_donation", params)
+            .then(async (res) => {
+              const data = res.data.data;
+              const parameters = JSON.stringify(params);
+              const msg = `Prediction: ${data.prediction}\nInterpretation: ${data.interpretation}\nParameters: ${parameters}`;
+              console.log(msg);
+
+              try {
+                const examcollref = doc(db, "donations", y[i].id);
+                updateDoc(examcollref, {
+                  predictDonation: data.interpretation,
+                });
+              } catch (error) {
+                console.log(error);
+              }
+            })
+            .catch((error) => console.log(`Error: ${error.message}`));
+        });
+      }
+    }
+  };
 
   const getDonations = async () => {
     const DonatoinRef = query(
       collection(db, "donations"),
       where("orphangeEmail", "==", "abc@gmail.com")
     );
+
     const getAllDonations = () => {
       return getDocs(DonatoinRef);
     };
 
     const data = await getAllDonations();
     console.log(data.docs);
+
     setDonations(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
@@ -98,103 +269,6 @@ const Donations = () => {
       // docSnap.data() will be undefined in this case
       console.log("No such document!");
     }
-    console.log(id.dAmount);
-    //Workclass
-    // if (donations.dWorkClass == "Private") {
-    //   setWorkclass(0);
-    // }
-    // if (donations.dWorkClass == "Self-employment") {
-    //   setWorkclass(1);
-    // }
-    // if (donations.dWorkClass == "Goverment") {
-    //   setWorkclass(2);
-    // }
-    // if (donations.dWorkClass == "Semi-government") {
-    //   setWorkclass(3);
-    // }
-    // if (donations.dWorkClass == "Never-worked") {
-    //   setWorkclass(4);
-    // }
-
-    // //Education
-    // if (donations.dWorkClass == "5th") {
-    //   setEducation(0);
-    // }
-    // if (donations.dWorkClass == "11th") {
-    //   setEducation(1);
-    // }
-    // if (donations.dWorkClass == "Bachelors") {
-    //   setEducation(2);
-    // }
-    // if (donations.dWorkClass == "Masters") {
-    //   setEducation(3);
-    // }
-    // if (donations.dWorkClass == "Never-workedDoctorate") {
-    //   setEducation(4);
-    // }
-
-    // //Marital status
-    // if (donations.dMaritalStatus == "Never-married") {
-    //   setMarital_status(1);
-    // }
-    // if (donations.dMaritalStatus == "Married") {
-    //   setMarital_status(2);
-    // }
-    // if (donations.dMaritalStatus == "Divorced") {
-    //   setMarital_status(3);
-    // }
-    // if (donations.dMaritalStatus == "Widowed") {
-    //   setMarital_status(4);
-    // }
-
-    // //Relationship
-    // if (donations.dWorkClass == "Wife") {
-    //   setRelationship(1);
-    // }
-    // if (donations.dWorkClass == "Husband") {
-    //   setRelationship(2);
-    // }
-    // if (donations.dWorkClass == "Own-child") {
-    //   setRelationship(3);
-    // }
-    // if (donations.dWorkClass == "Not-in-family") {
-    //   setRelationship(4);
-    // }
-    // if (donations.dWorkClass == "Unmarried") {
-    //   setRelationship(5);
-    // }
-    // if (donations.dWorkClass == "Other-relative") {
-    //   setRelationship(6);
-    // }
-
-    setAge(35.0);
-    setWorkclass(1);
-    setEducation(1);
-    setMarital_status(2);
-    setRelationship(1);
-    setSex(1);
-    setHours_per_week(20.5);
-    console.log("hii", marital_status);
-
-    const params = {
-      age,
-      workclass,
-      education,
-      marital_status,
-      relationship,
-      sex,
-      hours_per_week,
-    };
-
-    axios
-      .post("http://localhost:8080/predict_donation", params)
-      .then((res) => {
-        const data = res.data.data;
-        const parameters = JSON.stringify(params);
-        const msg = `Prediction: ${data.prediction}\nInterpretation: ${data.interpretation}\nParameters: ${parameters}`;
-        alert(msg);
-      })
-      .catch((error) => alert(`Error: ${error.message}`));
   };
 
   const handleDeleteDonation = async (id) => {
@@ -231,6 +305,7 @@ const Donations = () => {
                     <TableCell align="left">Work Class</TableCell>
                     <TableCell align="left">Donated Amount</TableCell>
                     <TableCell align="left">Donated Date</TableCell>
+                    <TableCell align="left">Prediction</TableCell>
                     <TableCell align="left">Update</TableCell>
                     <TableCell align="left">Delete</TableCell>
                   </TableRow>
@@ -270,6 +345,9 @@ const Donations = () => {
                         {row.dDate}
                       </TableCell>
                       <TableCell align="left" className="donationCell">
+                        {row.predictDonation}
+                      </TableCell>
+                      <TableCell align="left" className="donationCell">
                         {" "}
                         <button
                           className="donationUpdate"
@@ -278,15 +356,7 @@ const Donations = () => {
                           Update
                         </button>
                       </TableCell>
-                      <TableCell align="left" className="donationCell">
-                        {" "}
-                        <button
-                          className="donationUpdate"
-                          onClick={() => handleModal(row.id)}
-                        >
-                          Predict
-                        </button>
-                      </TableCell>
+
                       <TableCell align="left" className="donationCell">
                         {" "}
                         <button

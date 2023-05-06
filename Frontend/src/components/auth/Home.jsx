@@ -1,11 +1,17 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { auth } from "../../firebase";
 import "./home.css";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Home = () => {
+  const navRef = useRef();
+
+  const showNavbar = () => {
+    navRef.current.classList.toggle("responsive_nav");
+  };
   const [selects, setSelects] = useState();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -54,34 +60,30 @@ const Home = () => {
 
   return (
     <div>
-      <div className="banner">
-        <div className="navbar">
+      <div className="">
+        <header>
           <div className="logoImg">
             <img src="images/logo1.png" alt="" className="logo" />
           </div>
-          <ul>
-            <li>
-              <a href="#">Home</a>
-            </li>
-            <li>
-              <a href="#signin">Sign In</a>
-            </li>
-            <li>
-              <a href="#signup">Sign Up</a>
-            </li>
-          </ul>
-        </div>
+          <nav ref={navRef}>
+            <a href="/#">HOME</a>
+            <a href="/#">SIGN IN</a>
+            <a href="/#">SIGN UP</a>
+            <a href="/#">ORPHANAGE LOGIN</a>
+            <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+              <FaTimes />
+            </button>
+          </nav>
+          <button className="nav-btn" onClick={showNavbar}>
+            <FaBars />
+          </button>
+        </header>
 
         <section id="home">
           <div className="content">
-            <div className="homeImageCover">
-              <img src="images/homeChild.svg" className="homeImage" />
-            </div>
+            <div className="homeImageCover"></div>
             <div className="title">
-              <h1 className="slogan">
-                All children deserve to survive & prosper today and in the
-                future...{" "}
-              </h1>
+              <h1 className="slogan"></h1>
             </div>
             <div className="homebtnCover">
               <a class="homebtn" href="#signin">
