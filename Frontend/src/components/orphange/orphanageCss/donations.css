@@ -27,3 +27,69 @@
   border-bottom: 2px;
   border-color: black;
 }
+
+.totalDonation {
+  width: 350px;
+  height: 200px;
+  background-color: rgb(235, 244, 244);
+  margin-left: 100px;
+  margin-top: 50px;
+  border-radius: 10px;
+  box-shadow: 2px 1px;
+}
+.totalDonation h2 {
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+.totalDonation .totalNumber {
+  font-size: 50px;
+  margin-left: 150px;
+  margin-top: 30px;
+}
+
+.futureDonation {
+  width: 350px;
+  height: 200px;
+  background-color: rgb(210, 207, 215);
+  margin-left: 500px;
+  margin-top: -200px;
+  border-radius: 10px;
+  box-shadow: 2px 1px;
+}
+
+.futureDonation h2 {
+  margin-top: 30px;
+  margin-left: 50px;
+}
+
+.futureDonation .totalPredction {
+  font-size: 50px;
+  margin-left: 150px;
+  margin-top: 30px;
+}
+
+.addDonation {
+  margin-left: 850px;
+  margin-top: -190px;
+  margin-bottom: 150px;
+}
+
+.add {
+  display: block;
+  width: 200px;
+  height: 55px;
+  background-color: rgb(189, 194, 226);
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  color: rgb(15, 14, 14);
+  font-weight: 600;
+  line-height: 25px;
+  font-size: 18px;
+  color: black;
+  border: none;
+  margin-left: 50px;
+  margin-top: 30px;
+  box-shadow: 2px 2px;
+}

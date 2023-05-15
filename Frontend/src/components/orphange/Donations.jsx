@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { db, storage, auth } from "../../firebase";
+import CountUp from "react-countup";
 
 import { Button, Card, Grid, Container, Image } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +23,7 @@ import {
   deleteDoc,
   doc,
   updateDoc,
+  getCountFromServer,
 } from "firebase/firestore";
 import "./orphanageCss/donations.css";
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -43,6 +45,9 @@ const Donations = () => {
   const [relationship, setRelationship] = useState("");
   const [sex, setSex] = useState("");
   const [hours_per_week, setHours_per_week] = useState("");
+
+  const [dataDisplay, setDataDusplay] = useState("");
+  const [countPrediction, setCountPrediction] = useState("");
 
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user) => {
@@ -75,7 +80,27 @@ const Donations = () => {
     getDonations();
     //getDonations1();
     updatedonate();
+
+    calculations();
   }, [donations]);
+
+  const calculations = async () => {
+    const coll = collection(db, "donations");
+    const snapshot = await getCountFromServer(coll);
+    console.log("count: ", snapshot.data().count);
+    const dataDisplay1 = snapshot.data().count;
+    setDataDusplay(dataDisplay1);
+
+    const countPredictRef = query(
+      collection(db, "donations"),
+      where("predictDonation", "==", "will give donation.")
+    );
+
+    const countPredict = await getCountFromServer(countPredictRef);
+
+    const countDisplay1 = countPredict.data().count;
+    setCountPrediction(countDisplay1);
+  };
 
   const updatedonate = async () => {
     const DonatoinRef1 = query(
@@ -85,7 +110,7 @@ const Donations = () => {
 
     const x = await getDocs(DonatoinRef1);
     const y = x.docs;
-    console.log("mmmmm", y[1].id);
+    // console.log("mmmmm", y[1].id);
     if (y.length == 0) {
       console.log("Completed");
     } else {
@@ -246,7 +271,7 @@ const Donations = () => {
   const getDonations = async () => {
     const DonatoinRef = query(
       collection(db, "donations"),
-      where("orphangeEmail", "==", "abc@gmail.com")
+      where("orphangeEmail", "==", "nima@gmail.com")
     );
 
     const getAllDonations = () => {
@@ -281,7 +306,21 @@ const Donations = () => {
       <div className="AppGlass">
         <SideBar />
         <div className="MainDash">
-          <div className="addOrphan">
+          <div className="totalDonation">
+            <h2>Total Number of Donations</h2>
+            <div className="totalNumber">
+              <CountUp delay={0.6} end={26} duration={0.3} />
+            </div>
+          </div>
+
+          <div className="futureDonation">
+            <h2>Predicted Donations</h2>
+            <div className="totalPredction">
+              <CountUp delay={0.6} end={20} duration={0.3} />
+            </div>
+          </div>
+
+          <div className="addDonation">
             <button className="add" onClick={() => navigate(`/AddDonations`)}>
               Add Donation
             </button>
@@ -294,8 +333,12 @@ const Donations = () => {
               <Table aria-label="simple table" className="donationTable">
                 <TableHead>
                   <TableRow className="donationRow">
-                    <TableCell className="donationCell">No</TableCell>
-                    <TableCell align="left" className="donationCell">
+                    {/* <TableCell className="donationCell">No</TableCell> */}
+                    <TableCell
+                      align="center"
+                      style={{ width: "120px", textAlign: "center" }}
+                      className="donationCell"
+                    >
                       Name
                     </TableCell>
                     <TableCell align="left">Age</TableCell>
@@ -305,7 +348,9 @@ const Donations = () => {
                     <TableCell align="left">Work Class</TableCell>
                     <TableCell align="left">Donated Amount</TableCell>
                     <TableCell align="left">Donated Date</TableCell>
-                    <TableCell align="left">Prediction</TableCell>
+                    <TableCell align="left" style={{ textAlign: "center" }}>
+                      Prediction
+                    </TableCell>
                     <TableCell align="left">Update</TableCell>
                     <TableCell align="left">Delete</TableCell>
                   </TableRow>
@@ -317,9 +362,9 @@ const Donations = () => {
                       key={row.id}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
-                      <TableCell component="th" scope="row">
-                        {no}
-                      </TableCell>
+                      {/* <TableCell component="th" scope="row">
+                        {no + 1}
+                      </TableCell> */}
                       <TableCell align="left" className="donationCell">
                         {row.dName}
                       </TableCell>
@@ -344,7 +389,11 @@ const Donations = () => {
                       <TableCell align="left" className="donationCell">
                         {row.dDate}
                       </TableCell>
-                      <TableCell align="left" className="donationCell">
+                      <TableCell
+                        align="left"
+                        className="donationCell"
+                        style={{ width: "120px", textAlign: "center" }}
+                      >
                         {row.predictDonation}
                       </TableCell>
                       <TableCell align="left" className="donationCell">

@@ -12,6 +12,7 @@ export const SidebarData = [
   {
     icon: UilEstate,
     heading: "Dashboard",
+    place: "/AdminHome",
   },
   {
     icon: UilClipboardAlt,
@@ -31,6 +32,7 @@ export const SidebarData = [
   {
     icon: UilChart,
     heading: "Sponserships",
+    place: "/Sponserships",
   },
   {
     icon: UilChart,

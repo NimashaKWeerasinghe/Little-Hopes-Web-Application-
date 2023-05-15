@@ -1,25 +1,10 @@
-.banner {
-  margin-top: -2%;
-  width: 100%;
-  height: 140vh;
-  background-image: linear-gradient(to right, #3299be, #d5c7ec, #9cbeeb);
-  background-size: cover;
-  background-position: center;
-  font-family: sans-serif;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Titillium Web", sans-serif;
 }
 
-.navbar {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #93beef;
-  height: 7rem;
-  box-shadow: 2px 2px 2px 5px #93beef;
-  overflow: hidden;
-  position: fixed;
-  z-index: 2;
-}
 .accountbtn {
   border: none;
   background: none;

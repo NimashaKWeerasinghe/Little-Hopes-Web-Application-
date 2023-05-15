@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 import { doc, getDoc, getDocs, onSnapshot } from "firebase/firestore";
 
@@ -12,9 +13,14 @@ import AuthDetails from "../auth/AuthDetails";
 
 import { db } from "../../firebase";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const NearLocation = () => {
+  const navRef = useRef();
+
+  const showNavbar = () => {
+    navRef.current.classList.toggle("responsive_nav");
+  };
   const [books, setBooks] = useState({});
   const [loc, setloc] = useState("");
   const [distenceGiven, setDistenceGiven] = useState("");
@@ -91,20 +97,24 @@ const NearLocation = () => {
     });
   };
   return (
-    <div className="banner">
-      <div className="navbar">
+    <div className="all">
+      <header style={{ marginTop: "-10px" }}>
         <div className="logoImg">
           <img src="images/logo1.png" alt="" className="logo" />
         </div>
-        <div className="accountCont">
-          <div className="userImage"></div>
-          <div className="accbtncover">
-            <button className="accountbtn">
-              <AuthDetails />
-            </button>
-          </div>
-        </div>
-      </div>
+        <nav ref={navRef}>
+          <a href="/#">HOME</a>
+          <a href="/#">SIGN IN</a>
+          <a href="/#">SIGN UP</a>
+          <a href="/#">ORPHANAGE LOGIN</a>
+          <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+            <FaTimes />
+          </button>
+        </nav>
+        <button className="nav-btn" onClick={showNavbar}>
+          <FaBars />
+        </button>
+      </header>
 
       <div className="formcont">
         <form>

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./publicUserCSS/childrenGallery.css";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -50,6 +51,11 @@ const initialStateAdoption = {
 };
 
 const ChildrenGallery = () => {
+  const navRef = useRef();
+
+  const showNavbar = () => {
+    navRef.current.classList.toggle("responsive_nav");
+  };
   const [open, setOpen] = useState(false);
   const [orphans, setOrphans] = useState([]);
   const [orphan, setOrphan] = useState({});
@@ -304,24 +310,22 @@ const ChildrenGallery = () => {
   };
 
   return (
-    <div className="banner">
-      <div className="navbar">
-        <div className="logoImgGallery"></div>
-        <ul>
-          <li>
-            <a href="#">Home</a>
-          </li>
-          <li>
-            <a href="#gallery">Children Gallery</a>
-          </li>
-          <li>
-            <a href="#donation">Donation</a>
-          </li>
-          <li>
-            <a href="#">Adoption</a>
-          </li>
-        </ul>
-      </div>
+    <div>
+      <header>
+        <div className="logoImg"></div>
+        <nav ref={navRef}>
+          <a href="/#">HOME</a>
+          <a href="/#">OUR CHILDREN</a>
+          <a href="/#">DONATION</a>
+          <a href="/#">ADOPTION</a>
+          <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+            <FaTimes />
+          </button>
+        </nav>
+        <button className="nav-btn" onClick={showNavbar}>
+          <FaBars />
+        </button>
+      </header>
       <div className="homeOrphange">
         <div className="orphangeHomeImageCover">
           <div className="orphanageShapeCover"></div>
@@ -403,7 +407,7 @@ const ChildrenGallery = () => {
                     <div className="donation-box">
                       <input
                         type="text"
-                        placeholder="Full Name"
+                        placeholder=" Full Name"
                         className="inputDonation"
                         name="dName"
                         onChange={handleDonationChange}
@@ -417,7 +421,7 @@ const ChildrenGallery = () => {
                     <div className="donation-box">
                       <input
                         type="text"
-                        placeholder="Age"
+                        placeholder=" Age"
                         required
                         name="dAge"
                         className="inputDonation"
@@ -431,7 +435,7 @@ const ChildrenGallery = () => {
                     <div className="donation-box">
                       <input
                         type="text"
-                        placeholder="Phone Number"
+                        placeholder=" Phone Number"
                         className="inputDonation"
                         name="dPhone"
                         onChange={handleDonationChange}
@@ -445,7 +449,7 @@ const ChildrenGallery = () => {
                     <div className="donation-box">
                       <input
                         type="text"
-                        placeholder="Occupation"
+                        placeholder=" Occupation"
                         required
                         className="inputDonation"
                         onChange={handleDonationChange}
@@ -458,7 +462,7 @@ const ChildrenGallery = () => {
                     <div className="donation-box">
                       <input
                         type="text"
-                        placeholder="Amount of Donation"
+                        placeholder=" Amount of Donation"
                         required
                         className="inputDonation"
                         onChange={handleDonationChange}
@@ -471,7 +475,7 @@ const ChildrenGallery = () => {
                     <div className="donation-box">
                       <input
                         type="date"
-                        placeholder="Date"
+                        placeholder=" Date"
                         required
                         className="inputDonation"
                         onChange={handleDonationChange}
@@ -486,7 +490,7 @@ const ChildrenGallery = () => {
                       <div className="donation-box">
                         <input
                           type="text"
-                          placeholder="Working Hours Per Week"
+                          placeholder=" Working Hours Per Week"
                           className="inputDonation"
                           name="dHours"
                           onChange={handleDonationChange}
@@ -612,7 +616,7 @@ const ChildrenGallery = () => {
                       <div className="donation-box">
                         <input
                           type="text"
-                          placeholder="Full Name - Female Parent"
+                          placeholder=" Full Name - Female Parent"
                           className="inputDonation"
                           name="fName"
                           onChange={handleAdoptionChange}
@@ -625,7 +629,7 @@ const ChildrenGallery = () => {
                       <div className="donation-box">
                         <input
                           type="text"
-                          placeholder="Age - Female Parent"
+                          placeholder=" Age - Female Parent"
                           required
                           name="fAge"
                           className="inputDonation"
@@ -638,7 +642,7 @@ const ChildrenGallery = () => {
                       <div className="donation-box">
                         <input
                           type="email"
-                          placeholder="Email - Female Parent"
+                          placeholder=" Email - Female Parent"
                           required
                           className="inputDonation"
                           onChange={handleAdoptionChange}
@@ -651,7 +655,7 @@ const ChildrenGallery = () => {
                       <div className="donation-box">
                         <input
                           type="text"
-                          placeholder="Phone Number - Female Parent"
+                          placeholder=" Phone Number - Female Parent"
                           required
                           className="inputDonation"
                           onChange={handleAdoptionChange}
@@ -664,7 +668,7 @@ const ChildrenGallery = () => {
                       <div className="donation-box">
                         <input
                           type="text"
-                          placeholder="Occupation - Female Parent"
+                          placeholder=" Occupation - Female Parent"
                           required
                           className="inputDonation"
                           onChange={handleAdoptionChange}
@@ -677,7 +681,7 @@ const ChildrenGallery = () => {
                       <div className="donation-box">
                         <input
                           type="text"
-                          placeholder="Annual Income - Female Parent"
+                          placeholder=" Annual Income - Female Parent"
                           required
                           className="inputDonation"
                           onChange={handleAdoptionChange}
@@ -691,7 +695,7 @@ const ChildrenGallery = () => {
                         <div className="donation-box">
                           <input
                             type="text"
-                            placeholder="Full Name - Male Parent"
+                            placeholder=" Full Name - Male Parent"
                             className="inputDonation"
                             name="mName"
                             onChange={handleAdoptionChange}
@@ -704,7 +708,7 @@ const ChildrenGallery = () => {
                         <div className="donation-box">
                           <input
                             type="text"
-                            placeholder="Age - Male Parent"
+                            placeholder=" Age - Male Parent"
                             required
                             name="mAge"
                             className="inputDonation"
@@ -717,7 +721,7 @@ const ChildrenGallery = () => {
                         <div className="donation-box">
                           <input
                             type="email"
-                            placeholder="Email - Male Parent"
+                            placeholder=" Email - Male Parent"
                             required
                             className="inputDonation"
                             onChange={handleAdoptionChange}
@@ -730,7 +734,7 @@ const ChildrenGallery = () => {
                         <div className="donation-box">
                           <input
                             type="text"
-                            placeholder="Phone Number - Male Parent"
+                            placeholder=" Phone Number - Male Parent"
                             required
                             className="inputDonation"
                             onChange={handleAdoptionChange}
@@ -743,7 +747,7 @@ const ChildrenGallery = () => {
                         <div className="donation-box">
                           <input
                             type="text"
-                            placeholder="Occupation - Male Parent"
+                            placeholder=" Occupation - Male Parent"
                             required
                             className="inputDonation"
                             onChange={handleAdoptionChange}
@@ -756,7 +760,7 @@ const ChildrenGallery = () => {
                         <div className="donation-box">
                           <input
                             type="text"
-                            placeholder="Annual Income - Male Parent"
+                            placeholder=" Annual Income - Male Parent"
                             required
                             className="inputDonation"
                             onChange={handleAdoptionChange}

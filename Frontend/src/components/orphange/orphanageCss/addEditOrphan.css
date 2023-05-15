@@ -8,16 +8,19 @@
 .formfill {
   width: 400px;
   height: 40px;
+  border-radius: 5px;
 }
 .rightForm {
   margin-left: 500px;
-  margin-top: -320px;
+  margin-top: -370px;
 }
 .addOrphanBut {
   margin-top: 50px;
   margin-left: 350px;
   background-color: black;
   color: aliceblue;
+  height: 50px;
+  font-size: 20px;
 }
 .formfillBut {
   width: 400px;
@@ -37,6 +40,13 @@ input[type="file"]::file-selector-button {
 }
 .orphanCap {
   text-align: center;
-  margin-top: -1%;
-  margin-bottom: 5%;
+  margin-top: -10%;
+  margin-bottom: 100px;
+  font-size: 35px;
+}
+
+.donationUnderline {
+  margin-top: -80px;
+  margin-bottom: 50px;
+  margin-left: 130px;
 }

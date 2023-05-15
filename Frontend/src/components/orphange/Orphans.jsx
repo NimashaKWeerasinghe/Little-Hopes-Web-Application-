@@ -28,7 +28,7 @@ const Orphans = () => {
     const listen = onAuthStateChanged(auth, (user) => {
       if (user) {
         setAuthUser(user);
-        console.log(user.email);
+        // console.log(user.email);
       } else {
         setAuthUser(null);
       }
@@ -56,16 +56,14 @@ const Orphans = () => {
   }, [orphans]);
 
   const getOrphans = async () => {
-    const OrphanRef = query(
-      collection(db, "orphans"),
-      where("orphanageEmail", "==", "nima@gmail.com")
-    );
+    const OrphanRef = collection(db, "orphans");
+
     const getAllOrphans = () => {
       return getDocs(OrphanRef);
     };
 
     const data = await getAllOrphans();
-    console.log(data.docs);
+    // console.log(data.docs);
     setOrphans(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
@@ -94,13 +92,16 @@ const Orphans = () => {
             {orphans.map((item, index) => (
               <div className="card" key={item.id}>
                 <div className="imageChild">
-                  <img src={item.img} />
+                  <img src="../images/child.jpg" alt="image" />
                 </div>
                 <div className="fullName">
                   <p>{item.fullName}</p>
                 </div>
                 <div className="des">
                   <p className="gender">{item.oGender}</p>
+                  <br />
+                  <p className="gender">{item.odob}</p>
+                  <br />
                   <button
                     className="update"
                     onClick={() => navigate(`/EditOrphans/${item.id}`)}

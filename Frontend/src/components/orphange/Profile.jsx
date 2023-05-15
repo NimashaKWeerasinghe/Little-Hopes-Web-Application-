@@ -4,6 +4,7 @@ import AuthDetails from "../auth/AuthDetails";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { geofire } from "geofire";
+import SideBar from "../items/adminSideBar/SideBar";
 
 import {
   doc,
@@ -78,139 +79,67 @@ const Profile = () => {
   };
 
   return (
-    <div className="body">
-      <div className="wrapper">
-        <div className="sidebar">
-          <div className="adminlogo">
-            <img src="" alt="" />
-            <h3>
-              {" "}
-              <AuthDetails />
-            </h3>
-            <p> Address </p>
-          </div>
-          <ul>
-            <li>
-              <a href="/AdminHome">
-                <span className="icon">
-                  <i className="fas fa-home"></i>
-                </span>
-                <span className="item">Home</span>
-              </a>
-            </li>
-            <li>
-              <a href="/Orphans">
-                <span className="icon">
-                  <i className="fas fa-user"></i>
-                </span>
-                <span className="item">Orphans</span>
-              </a>
-            </li>
-            <li>
-              <a href="/Donations">
-                <span className="icon">
-                  <i className="fas fa-chart-line"></i>
-                </span>
-                <span className="item">Donations</span>
-              </a>
-            </li>
-            <li>
-              <a href="/Adoptions">
-                <span className="icon">
-                  <i className="fas fa-users"></i>
-                </span>
-                <span className="item">Adoptions</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span className="icon">
-                  <i className="fas fa-users"></i>
-                </span>
-                <span className="item">Sponserships</span>
-              </a>
-            </li>
-            <li>
-              <a href="/Profile">
-                <span className="icon">
-                  <i className="fas fa-user-shield"></i>
-                </span>
-                <span className="item">Profile</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span className="icon">
-                  <i className="fas fa-chevron-left"></i>
-                </span>
-                <span className="item">Log Out</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="section">
-          <div className="top_navbar">
-            <div className="logOut">
-              <a href="/" className="add">
-                Log Out
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="profileContaoner">
-          <div className="otitle"> Orphanage Profile</div>
-          <hr />
-          <br />
-          <div className="innercon">
-            <div className="stitle">Orphanage Name</div> <br />
-            <div className="inputbox1">
-              <input
-                className="box"
-                type="text"
-                placeholder="Enter Name"
-                value={orpanageName}
-                onChange={(e) => setName(e.target.value)}
-              ></input>
-            </div>
+    <div className="App">
+      <div className="AppGlass">
+        <SideBar />
+        <div className="MainDash">
+          <div className="profileContaoner">
+            <br /> <br />
+            <div className="otitle"> Orphanage Profile</div>
             <br />
-            <div className="sstitle">Orphanage Email</div>{" "}
-            <div className="inputbox2">
-              <input
-                className="box"
-                type="email"
-                placeholder="Enter Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              ></input>
-            </div>
-            <br />
-            <br />
-            <div className="sstitle">Orphanage Location</div>{" "}
-            <div className="inputbox3">
-              <input
-                className="box"
-                type="text"
-                placeholder="Enter Location"
-                value={loc}
-                onChange={(e) => setloc(e.target.value)}
-              ></input>
-            </div>
-            <br />
-            <br />
-            <div className="sstitle">Orphange Address</div>{" "}
-            <div className="inputbox4">
-              <input
-                className="box"
-                type="text"
-                placeholder="Enter Address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              ></input>
-            </div>
-            <div className="buttonbox">
-              <button type="submit" className="updatebutton" onClick={testing}>
-                Update
-              </button>
+            <hr />
+            <br /> <br /> <br />
+            <div className="innercon">
+              <div className="stitle">Orphanage Name</div> <br />
+              <div className="inputbox1">
+                <input
+                  className="box"
+                  type="text"
+                  value={orpanageName}
+                  onChange={(e) => setName(e.target.value)}
+                ></input>
+              </div>
+              <br />
+              <div className="sstitle">Orphanage Email</div>{" "}
+              <div className="inputbox2">
+                <input
+                  className="box"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                ></input>
+              </div>
+              <br />
+              <br />
+              <div className="sstitle">Orphanage Location</div>{" "}
+              <div className="inputbox3">
+                <input
+                  className="box"
+                  type="text"
+                  value={loc}
+                  onChange={(e) => setloc(e.target.value)}
+                ></input>
+              </div>
+              <br />
+              <br />
+              <div className="sstitle">Orphange Address</div>{" "}
+              <div className="inputbox4">
+                <input
+                  className="box"
+                  type="text"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                ></input>
+              </div>
+              <div className="buttonbox">
+                <button
+                  type="submit"
+                  className="updatebutton"
+                  onClick={testing}
+                >
+                  Update
+                </button>
+              </div>
             </div>
           </div>
         </div>

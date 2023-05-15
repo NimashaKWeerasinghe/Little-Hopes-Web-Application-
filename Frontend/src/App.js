@@ -18,6 +18,7 @@ import AddEditSponserships from "./components/orphange/AddEditSponserships.jsx";
 import SideBar from "./components/items/adminSideBar/SideBar.jsx";
 import Table from "./components/items/table/Table.jsx";
 import Checkout from "./components/publicUser/CheckOut.jsx";
+import OrphangeLogin from "./components/orphange/OrphangeLogin.jsx";
 
 function App() {
   return (
@@ -64,6 +65,8 @@ function App() {
           <Route path="/NearLocation" element={<NearLocation />}></Route>
 
           <Route path="/AdminHome" element={<AdminHome />}></Route>
+
+          <Route path="/OrphangeLogin" element={<OrphangeLogin />}></Route>
 
           <Route path="/Profile" element={<Profile />}></Route>
           <Route

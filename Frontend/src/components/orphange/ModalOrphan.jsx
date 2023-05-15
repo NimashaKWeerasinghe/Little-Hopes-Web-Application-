@@ -33,11 +33,14 @@ const ModalOrphan = ({
         </div>
         <div>
           <img src={img} alt="image" className="childimg" />
-          <h3>{fullName}</h3>
+          <br /> <br />
+          <h3 style={{ color: "white" }}>{fullName}</h3>
+          <br />
           <hr />
+          <br /> <br />
           <div className="personal">
             <table>
-              <tr>
+              <tr style={{ padding: "15px" }}>
                 <td>Name of Father :</td>
                 <td>{fName} </td>
                 <td>Name of Mother :</td>
@@ -64,7 +67,7 @@ const ModalOrphan = ({
             </table>
           </div>
         </div>
-        <div className="buttons">
+        <div className="buttonstwo">
           <button className="cancelbut" onClick={() => setOpen(false)}>
             Cancel
           </button>

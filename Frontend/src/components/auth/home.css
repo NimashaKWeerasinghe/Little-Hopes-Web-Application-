@@ -5,11 +5,270 @@
   font-family: "Titillium Web", sans-serif;
 }
 
+.all {
+  background-color: #a6c6ee;
+}
+
+.all2 {
+  background-color: #a6c6ee;
+  height: 900px;
+}
+
 :root {
   --mainColor: #98bcec;
   --mainColorLight: #5767aa;
-  --secondaryColor: #db2b39;
+  --secondaryColor: #20118f;
   --textColor: #1e1d1d;
+}
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+  background-color: #79aaec;
+  margin-top: 10px;
+}
+
+.wrapper1 {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+.wrapper2 {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.wrapper1 .boxImg {
+  width: 800px;
+  height: 520px;
+  background-image: url("../../../public/images/signup.svg");
+  background-position: center;
+  background-size: cover;
+}
+
+.wrapper2 .boxImg1 {
+  width: 800px;
+  height: 520px;
+  background-image: url("../../../public/images/signup.svg");
+  background-position: center;
+  background-size: cover;
+}
+
+.wrapper1 .boxSignIn {
+  width: 500px;
+  height: 520px;
+  background-image: linear-gradient(to right, #4660af, #618ae3, #3772be);
+  border-radius: 15px;
+}
+
+.wrapper2 .boxSignup {
+  width: 500px;
+  height: 580px;
+  background-image: linear-gradient(to right, #4660af, #618ae3, #3772be);
+  border-radius: 15px;
+}
+
+.homeImgone {
+  width: 470px;
+  height: 350px;
+  background-image: url("../../../public/images/1.jpg");
+  background-position: center;
+  background-size: cover;
+  margin-left: 60px;
+  margin-top: 250px;
+  border-radius: 15px;
+  box-shadow: 1px 2px 1px 2px;
+}
+.homeImgTwo {
+  width: 470px;
+  height: 300px;
+  background-image: url("../../../public/images/2.jpg");
+  background-position: center;
+  background-size: cover;
+  margin-left: 380px;
+  margin-top: -500px;
+  border-radius: 15px;
+  box-shadow: 1px 2px 1px 2px;
+}
+
+.homeImgThree {
+  width: 400px;
+  height: 290px;
+  background-image: url("../../../public/images/4.jpg");
+  background-position: center;
+  background-size: cover;
+  margin-left: 500px;
+  margin-top: -40px;
+  border-radius: 15px;
+  box-shadow: 1px 2px 1px 2px;
+}
+.saying {
+  margin-top: -500px;
+  margin-left: 900px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.saying h2 {
+  margin-bottom: 5px;
+}
+.global {
+  width: 400px;
+  height: 300px;
+  background-color: rgb(36, 154, 212);
+  margin-left: 1000px;
+  margin-top: 60px;
+  border-radius: 15px;
+  box-shadow: 2px 2px;
+  color: #070707;
+}
+
+.global .kidIcon {
+  width: 100px;
+  height: 100px;
+  background-image: url("../../../public/images/iconkid.png");
+  background-position: center;
+  background-size: cover;
+  padding-top: 10px;
+  margin-left: 140px;
+}
+.global .counter {
+  width: 150px;
+  height: 50px;
+  color: #070707;
+  font-weight: 800;
+  font-size: 40px;
+  margin-top: 30px;
+  margin-left: 70px;
+}
+
+.globalh1 {
+  margin-left: 70px;
+}
+
+.wrapper .box img {
+  width: 500px;
+  height: 350px;
+}
+
+.wrapper1 .boxImg img {
+  width: 500px;
+  height: 300px;
+}
+
+.wrapper1 .boxSignIn img {
+  width: 100px;
+  height: 100px;
+  margin-left: 200px;
+  margin-top: 20px;
+}
+
+.wrapper2 .boxSignup img {
+  width: 100px;
+  height: 100px;
+  margin-left: 200px;
+  margin-top: 20px;
+}
+
+@media (max-width: 800px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .wrapper1 {
+    flex-direction: column;
+  }
+
+  .wrapper2 {
+    flex-direction: column;
+  }
+
+  .wrapper1 .boxImg {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .wrapper2 .boxImg2 {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .wrapper1 .boxSignIn {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .wrapper .box {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .wrapper .box1 {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .wrapper .box2 {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .wrapper .box img {
+    width: 100%;
+    margin-top: 30px;
+  }
+}
+
+.mainHeading {
+  width: 50%;
+  padding-top: 10px;
+  padding-left: 550px;
+}
+
+.mainHeading h3 {
+  font-size: 3em;
+  font-weight: bolder;
+  padding-bottom: 10px;
+  margin-top: 100px;
+}
+
+.mainHeading h3 span {
+  font-weight: 100;
+}
+
+@media only screen and (max-width: 643px) {
+  .mainHeading {
+    width: 100%;
+  }
+  .mainHeading h3 {
+    font-size: 2em;
+  }
+}
+
+.mainHeading1 {
+  width: 50%;
+  padding-bottom: 10px;
+  padding-left: 100px;
+}
+
+.mainHeading1 h3 {
+  font-size: 3em;
+  font-weight: bolder;
+  padding-bottom: 10px;
+  color: #20118f;
+}
+
+.mainHeading1 h3 span {
+  font-weight: 100;
+}
+
+@media only screen and (max-width: 643px) {
+  .mainHeading1 {
+    width: 100%;
+  }
+  .mainHeading1 h3 {
+    font-size: 1em;
+  }
 }
 
 header {
@@ -20,6 +279,10 @@ header {
   padding: 0 1rem;
   background-color: var(--mainColor);
   color: var(--textColor);
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 }
 
 nav a {
@@ -92,6 +355,7 @@ nav {
   margin-top: 2%;
   width: 100%;
   height: 140vh;
+  background-color: #98bcec;
   background-image: linear-gradient(to right, #3299be, #d5c7ec, #9cbeeb);
   background-size: cover;
   background-position: center;
@@ -99,52 +363,16 @@ nav {
 }
 
 #home {
-  height: 700px;
+  height: 60rem;
   background-image: linear-gradient(to right, #d4e7ee, #93beef, #85a2c7);
 }
 
 .h2Cover .signintitle {
   display: flex;
   justify-content: flex-start;
+  margin-left: 80px;
 }
 
-.title .slogan {
-  font-size: 40px;
-  color: rgb(13, 13, 13);
-  text-shadow: 1px 1px black;
-  margin-top: -350px;
-  margin-left: 700px;
-}
-.homeImageCover {
-  padding-top: 200px;
-  margin-left: 130px;
-}
-
-.homeImage {
-  width: 25rem;
-  height: 25rem;
-}
-
-.homebtnCover .homebtn {
-  margin-left: 750px;
-  width: 250px;
-  height: 80px;
-  font-size: 20px;
-  color: #0c0b0b;
-  background-image: linear-gradient(to right, #2f32e6, #8550d3, #8eaacf);
-  border: none;
-  border-radius: 7px;
-  align-items: center;
-  padding-top: 20px;
-  padding-right: 35px;
-}
-.homebtn:hover {
-  color: white;
-}
-
-.homebtnCover {
-  margin-top: 50px;
-}
 .heading {
   text-align: center;
   padding-bottom: 2rem;
@@ -232,11 +460,12 @@ form {
   margin-top: 20px;
 }
 
-.login-content .input-div {
+.input-div {
   position: relative;
   display: grid;
   padding-bottom: 10px;
-  padding-top: 10px;
+  padding-top: 30px;
+  margin-left: 80px;
   grid-template-columns: 7% 93%;
 
   border-bottom: 2px solid #d9d9d9;
@@ -357,7 +586,8 @@ a:hover {
   background-position: right;
 }
 .buttonClass {
-  padding-right: 100px;
+  margin-left: 80px;
+  padding-top: 30px;
 }
 @media screen and (max-width: 1050px) {
   .containerSignIn {
@@ -418,4 +648,22 @@ a:hover {
   font-size: 18px;
   margin-left: 30px;
   margin-bottom: 90px;
+}
+
+.logoImg {
+  background-image: url("../../../public/images/logo1.png");
+}
+
+.signUpProfile {
+  width: 100px;
+  height: 100px;
+  margin-left: 200px;
+  margin-top: 30px;
+}
+
+.boxSignup2 {
+  width: 500px;
+  height: 520px;
+  background-image: linear-gradient(to right, #4660af, #618ae3, #3772be);
+  border-radius: 15px;
 }

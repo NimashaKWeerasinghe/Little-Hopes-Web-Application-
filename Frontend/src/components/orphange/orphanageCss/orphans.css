@@ -13,6 +13,8 @@
   border-radius: 5px;
   margin: 2%;
   height: 400px;
+  background-color: rgb(67, 74, 123);
+  color: white;
 }
 
 .imageChild {
@@ -59,11 +61,11 @@ button {
 }
 
 .update {
-  background-color: rgb(138, 189, 151);
+  background-color: rgb(114, 156, 124);
 }
 
 .delete {
-  background-color: rgb(224, 176, 176);
+  background-color: rgb(108, 168, 220);
 }
 
 button:hover {

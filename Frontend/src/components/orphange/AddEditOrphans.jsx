@@ -115,7 +115,7 @@ const AddEditOrphans = () => {
             setData((prev) => ({
               ...prev,
               img: downloadURL,
-              orphangeEmail: authUser.email,
+              orphangeEmail: "abc@gmail.com",
             }));
           });
         }

@@ -113,9 +113,10 @@ const AddEditDonations = ({ addDonation }) => {
                     <h2 className="orphanCap">
                       {id ? "Update Donation" : "Add Donation"}
                     </h2>
-
+                    <hr className="donationUnderline" />
                     <Form onSubmit={handleSubmit}>
                       Full Name
+                      <br />
                       <input
                         label="Full Name"
                         className="formfill"
@@ -125,7 +126,10 @@ const AddEditDonations = ({ addDonation }) => {
                         autoFocus
                         placeholder="Full Name"
                       />
+                      <br />
+                      <br />
                       Age
+                      <br />
                       <input
                         label="Age"
                         className="formfill"
@@ -135,6 +139,8 @@ const AddEditDonations = ({ addDonation }) => {
                         placeholder="Age"
                         autoFocus
                       />
+                      <br />
+                      <br />
                       Gender
                       <input
                         label="Gender"
@@ -145,6 +151,8 @@ const AddEditDonations = ({ addDonation }) => {
                         value={dGender}
                         autoFocus
                       />
+                      <br />
+                      <br />
                       Marital Status
                       <input
                         label="Marital Status"
@@ -155,6 +163,8 @@ const AddEditDonations = ({ addDonation }) => {
                         value={dMaritalStatus}
                         autoFocus
                       />
+                      <br />
+                      <br />
                       Occupation
                       <input
                         placeholder="Ocuupation"
@@ -174,6 +184,8 @@ const AddEditDonations = ({ addDonation }) => {
                           value={dWorkClass}
                           autoFocus
                         />
+                        <br />
+                        <br />
                         Donated_Amount
                         <input
                           placeholder="Donated Amount"
@@ -183,6 +195,8 @@ const AddEditDonations = ({ addDonation }) => {
                           value={dAmount}
                           autoFocus
                         />
+                        <br />
+                        <br />
                         Donated_Date
                         <input
                           placeholder="Donated Date"
@@ -193,6 +207,8 @@ const AddEditDonations = ({ addDonation }) => {
                           autoFocus
                         />
                       </div>
+                      <br />
+                      <br />
                       <button
                         type="submit"
                         className="addOrphanBut"

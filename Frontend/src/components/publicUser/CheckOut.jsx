@@ -54,15 +54,7 @@ const Checkout = () => {
   return (
     <PayPalScriptProvider options={{ "client-id": CLIENT_ID }}>
       <div>
-        <div className="banner">
-          <div className="navbar">
-            <div className="checkoutLogo"></div>
-            <ul className="checkoutNav">
-              <li>
-                <a href="#">Home</a>
-              </li>
-            </ul>
-          </div>
+        <div className="all">
           <div className="product-info">
             <div className="donationCard">
               <div className="progress-checkout-container">
