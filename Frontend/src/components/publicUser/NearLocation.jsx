@@ -33,7 +33,7 @@ const NearLocation = () => {
     e.preventDefault();
 
     // API key for get latitite and longitute
-    Geocode.setApiKey("AIzaSyAn5-eo86wrdrWJsaGeiUy6RfbrlhHnt7Q");
+    Geocode.setApiKey("");
 
     Geocode.setLanguage("en");
 
